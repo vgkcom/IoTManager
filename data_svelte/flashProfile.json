@@ -32,7 +32,7 @@
             },
             {
                 "path": "src/modules/virtual/LogingDaily",
-                "active": true
+                "active": false
             },
             {
                 "path": "src/modules/virtual/LogingHourly",
@@ -48,7 +48,7 @@
             },
             {
                 "path": "src/modules/virtual/Ping",
-                "active": true
+                "active": false
             },
             {
                 "path": "src/modules/virtual/Timer",
@@ -56,7 +56,7 @@
             },
             {
                 "path": "src/modules/virtual/UpdateServer",
-                "active": true
+                "active": false
             },
             {
                 "path": "src/modules/virtual/Variable",
@@ -82,7 +82,7 @@
             },
             {
                 "path": "src/modules/sensors/Ads1115",
-                "active": false
+                "active": true
             },
             {
                 "path": "src/modules/sensors/AhtXX",
@@ -182,7 +182,7 @@
             },
             {
                 "path": "src/modules/sensors/Ina226",
-                "active": false
+                "active": true
             },
             {
                 "path": "src/modules/sensors/IoTWiegand",
@@ -194,7 +194,7 @@
             },
             {
                 "path": "src/modules/sensors/Max6675",
-                "active": false
+                "active": true
             },
             {
                 "path": "src/modules/sensors/Mhz19",
