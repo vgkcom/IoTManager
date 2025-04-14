@@ -427,7 +427,7 @@
       },
       {
         "path": "src/modules/exec/Buzzer",
-        "active": true
+        "active": false
       },
       {
         "path": "src/modules/exec/EctoControlAdapter",
@@ -515,7 +515,7 @@
       },
       {
         "path": "src/modules/exec/Telegram_v2",
-        "active": true
+        "active": false
       },
       {
         "path": "src/modules/exec/Thermostat",

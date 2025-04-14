@@ -274,26 +274,88 @@
     },
     {
         "global": 0,
-        "name": "18. Аналоговый счетчик импульсов",
-        "type": "Writing",
-        "subtype": "Impulse",
-        "id": "impulse",
-        "widget": "anydataDef",
-        "page": "Счетчики",
-        "descr": "Импульсов",
-        "needSave": 0,
-        "int": 1,
-        "pin": 16,
-        "pinMode": "INPUT",
-        "debounceDelay": 3,
+        "name": "18. INA219 Tок",
+        "type": "Reading",
+        "subtype": "Ina219curr",
+        "id": "ina219_A",
+        "widget": "anydataAmp",
+        "page": "INA 219",
+        "descr": "Сила тока",
+        "addr": "0x40",
+        "plus": 0,
         "multiply": 1,
-        "count": 0,
-        "timeORcount": 0,
+        "round": 3,
+        "int": 10,
         "num": 18
     },
     {
         "global": 0,
-        "name": "19. INA226 Tок",
+        "name": "19. INA219 Напряжение",
+        "type": "Reading",
+        "subtype": "Ina219voltage",
+        "id": "ina219_V",
+        "widget": "anydataVlt",
+        "page": "INA 219",
+        "descr": "Напряжения",
+        "addr": "0x40",
+        "plus": 0,
+        "multiply": 1,
+        "round": 3,
+        "int": 10,
+        "num": 19
+    },
+    {
+        "global": 0,
+        "name": "20. INA219 Мощность",
+        "type": "Reading",
+        "subtype": "Ina219power",
+        "id": "ina219_W",
+        "widget": "anydataWt",
+        "page": "INA 219",
+        "descr": "Мощность",
+        "addr": "0x40",
+        "plus": 0,
+        "multiply": 1,
+        "round": 3,
+        "int": 10,
+        "num": 20
+    },
+    {
+        "global": 0,
+        "name": "21. INA219 Шунт",
+        "type": "Reading",
+        "subtype": "Ina219shuntvoltage",
+        "id": "ina219_Vsh",
+        "widget": "anydataVlt",
+        "page": "INA 219",
+        "descr": "Напряжение шунта",
+        "addr": "0x40",
+        "plus": 0,
+        "multiply": 1,
+        "round": 3,
+        "int": 10,
+        "num": 21
+    },
+    {
+        "global": 0,
+        "name": "22. INA219 Настройки",
+        "type": "Reading",
+        "subtype": "Ina219setting",
+        "id": "ina219_set",
+        "widget": "nil",
+        "page": "",
+        "descr": "",
+        "addr": "0x40",
+        "shunt": 0.1,
+        "maxV": 3.2,
+        "adjClbr": 0,
+        "resol": 4,
+        "btn-getClbr": "nil",
+        "num": 22
+    },
+    {
+        "global": 0,
+        "name": "23. INA226 Tок",
         "type": "Reading",
         "subtype": "Ina226curr",
         "id": "ina226_A",
@@ -305,11 +367,11 @@
         "multiply": 1,
         "round": 3,
         "int": 10,
-        "num": 19
+        "num": 23
     },
     {
         "global": 0,
-        "name": "20. INA226 Напряжение",
+        "name": "24. INA226 Напряжение",
         "type": "Reading",
         "subtype": "Ina226voltage",
         "id": "ina226_V",
@@ -321,11 +383,11 @@
         "multiply": 1,
         "round": 3,
         "int": 10,
-        "num": 20
+        "num": 24
     },
     {
         "global": 0,
-        "name": "21. INA226 Мощность",
+        "name": "25. INA226 Мощность",
         "type": "Reading",
         "subtype": "Ina226power",
         "id": "ina226_W",
@@ -337,11 +399,11 @@
         "multiply": 1,
         "round": 3,
         "int": 10,
-        "num": 21
+        "num": 25
     },
     {
         "global": 0,
-        "name": "22. INA226 Шунт",
+        "name": "26. INA226 Шунт",
         "type": "Reading",
         "subtype": "Ina226shuntvoltage",
         "id": "ina226_Vsh",
@@ -353,11 +415,11 @@
         "multiply": 1,
         "round": 3,
         "int": 10,
-        "num": 22
+        "num": 26
     },
     {
         "global": 0,
-        "name": "23. INA226 Настройки",
+        "name": "27. INA226 Настройки",
         "type": "Reading",
         "subtype": "Ina226setting",
         "id": "ina226_set",
@@ -370,11 +432,11 @@
         "adjClbr": 0,
         "resol": 4,
         "btn-getClbr": "nil",
-        "num": 23
+        "num": 27
     },
     {
         "global": 0,
-        "name": "24. MAX6675 Температура",
+        "name": "28. MAX6675 Температура",
         "type": "Reading",
         "subtype": "Max6675t",
         "id": "maxtmp",
@@ -385,10 +447,31 @@
         "DO": 12,
         "CS": 13,
         "CLK": 14,
-        "num": 24
+        "num": 28
     },
     {
-        "name": "25. UART",
+        "global": 0,
+        "name": "29. Cенсор температуры NTC",
+        "type": "Reading",
+        "subtype": "Ntc",
+        "id": "Ntctmp",
+        "widget": "anydataTmp",
+        "page": "Сенсоры",
+        "descr": "NTC Температура",
+        "needSave": 0,
+        "val": "0",
+        "int": 15,
+        "pin": "35",
+        "R1": "10000",
+        "R0": "10000",
+        "Beta": "3950.0",
+        "T0": "25",
+        "Vs": "3.3",
+        "round": 1,
+        "num": 29
+    },
+    {
+        "name": "30. UART",
         "type": "Reading",
         "subtype": "UART",
         "page": "",
@@ -400,14 +483,14 @@
         "line": 2,
         "speed": 9600,
         "eventFormat": 0,
-        "num": 25
+        "num": 30
     },
     {
         "header": "executive_devices"
     },
     {
         "global": 0,
-        "name": "26. Аналоговая кнопка",
+        "name": "31. Аналоговая кнопка",
         "type": "Reading",
         "subtype": "AnalogBtn",
         "id": "abtn",
@@ -417,11 +500,11 @@
         "pin": 34,
         "aValue": -1,
         "delta": 50,
-        "num": 26
+        "num": 31
     },
     {
         "global": 0,
-        "name": "27. Кнопка подключенная к пину",
+        "name": "32. Кнопка подключенная к пину",
         "type": "Writing",
         "subtype": "ButtonIn",
         "id": "btn",
@@ -436,11 +519,11 @@
         "debounceDelay": 50,
         "fixState": 0,
         "inv": 0,
-        "num": 27
+        "num": 32
     },
     {
         "global": 0,
-        "name": "28. Управление пином",
+        "name": "33. Управление пином",
         "type": "Writing",
         "subtype": "ButtonOut",
         "needSave": 0,
@@ -451,34 +534,11 @@
         "int": 0,
         "inv": 0,
         "pin": 2,
-        "num": 28
+        "num": 33
     },
     {
         "global": 0,
-        "name": "29. Пассивный звуковой извещатель",
-        "type": "Writing",
-        "subtype": "Buzzer",
-        "id": "buzzer",
-        "widget": "toggle",
-        "page": "Кнопки",
-        "descr": "Buzzer",
-        "int": 4000,
-        "pin": 14,
-        "freq": 2000,
-        "duration": 1000,
-        "beatLevel": 4,
-        "tempo": 120,
-        "tempoCorrection": 1,
-        "pauseBetween": 0,
-        "transpose": 0,
-        "cycle": 0,
-        "indication": 1,
-        "val": 0,
-        "num": 29
-    },
-    {
-        "global": 0,
-        "name": "30. PWM ESP32",
+        "name": "34. PWM ESP32",
         "type": "Writing",
         "subtype": "Pwm32",
         "id": "pwm",
@@ -492,11 +552,11 @@
         "PWM_resolution": 10,
         "val": 0,
         "apin": -1,
-        "num": 30
+        "num": 34
     },
     {
         "global": 0,
-        "name": "31. Телеграм-Лайт",
+        "name": "35. Телеграм-Лайт",
         "type": "Writing",
         "subtype": "TelegramLT",
         "id": "tg",
@@ -505,12 +565,12 @@
         "descr": "",
         "token": "",
         "chatID": "",
-        "num": 31
+        "num": 35
     },
     {
         "global": 0,
         "needSave": 0,
-        "name": "32. Термостат Гистере́зис ",
+        "name": "36. Термостат Гистере́зис ",
         "type": "Writing",
         "subtype": "ThermostatGIST",
         "id": "Thermo",
@@ -525,12 +585,12 @@
         "gist": 0.1,
         "rele": "",
         "direction": 0,
-        "num": 32
+        "num": 36
     },
     {
         "global": 0,
         "needSave": 0,
-        "name": "33. Термостат PID",
+        "name": "37. Термостат PID",
         "type": "Writing",
         "subtype": "ThermostatPID",
         "id": "Thermo",
@@ -549,12 +609,12 @@
         "KP": 10,
         "KI": 0.02,
         "KD": 8,
-        "num": 33
+        "num": 37
     },
     {
         "global": 0,
         "needSave": 0,
-        "name": "34. Термостат ЭТК",
+        "name": "38. Термостат ЭТК",
         "type": "Writing",
         "subtype": "ThermostatETK",
         "id": "Thermo",
@@ -565,12 +625,12 @@
         "round": 1,
         "iv_k": 1,
         "outside_id": "",
-        "num": 34
+        "num": 38
     },
     {
         "global": 0,
         "needSave": 0,
-        "name": "35. Термостат ЭТК2 ",
+        "name": "39. Термостат ЭТК2 ",
         "type": "Writing",
         "subtype": "ThermostatETK2",
         "id": "Thermo",
@@ -583,7 +643,7 @@
         "term_id": "",
         "iv_k": 1,
         "outside_id": "",
-        "num": 35
+        "num": 39
     },
     {
         "header": "screens"
