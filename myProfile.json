@@ -313,11 +313,11 @@
       },
       {
         "path": "src/modules/sensors/Impulse",
-        "active": true
+        "active": false
       },
       {
         "path": "src/modules/sensors/Ina219",
-        "active": false
+        "active": true
       },
       {
         "path": "src/modules/sensors/Ina226",
@@ -353,7 +353,7 @@
       },
       {
         "path": "src/modules/sensors/Ntc",
-        "active": false
+        "active": true
       },
       {
         "path": "src/modules/sensors/Pcf8591",
@@ -515,7 +515,7 @@
       },
       {
         "path": "src/modules/exec/Telegram_v2",
-        "active": false
+        "active": true
       },
       {
         "path": "src/modules/exec/Thermostat",
