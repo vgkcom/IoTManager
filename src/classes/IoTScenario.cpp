@@ -2,6 +2,7 @@
 #include "classes/IoTItem.h"
 #include "classes/IoTScenario.h"
 #include "utils/FileUtils.h"
+#include "utils/WiFiUtils.h"
 #include "NTP.h"
 
 
@@ -291,6 +292,11 @@ class CallExprAST : public ExprAST {
             ret.valD = Item->getIntFromNet();
             ret.isDecimal = true;
             return &ret;
+        
+        } else if (Cmd == F("doByInterval")) {  // вызываем системную функцию периодического выполнения вне таймера
+            Item->doByInterval();
+            ret = Item->value;
+            return &ret;
         }
 
         // если все же все ок, то готовим параметры для передачи в модуль
@@ -302,6 +308,15 @@ class CallExprAST : public ExprAST {
                 ArgsAsIoTValue.push_back(*tmp);
             else
                 return nullptr;  // ArgsAsIoTValue.push_back(zeroIotVal);
+        }
+
+        if (Cmd == F("setInterval")) {  // меняем интервал выполнения задач модуля налету 
+            if (ArgsAsIoTValue.size() == 1) {
+                Item->setInterval(ArgsAsIoTValue[0].valD);
+                ret.valD = Item->getInterval();
+                ret.isDecimal = true;
+                return &ret;
+            }
         }
 
         ret = Item->execute(Cmd, ArgsAsIoTValue);  // вызываем команду из модуля напрямую с передачей всех аргументов
@@ -343,7 +358,9 @@ enum SysOp {
     sysop_mqttPub,
     sysop_getUptime,
     sysop_mqttIsConnect,
-    sysop_wifiIsConnect
+    sysop_wifiIsConnect,
+    sysop_setInterval,
+    sysop_addPortMap
 };
 
 IoTValue sysExecute(SysOp command, std::vector<IoTValue> &param) {
@@ -449,7 +466,17 @@ IoTValue sysExecute(SysOp command, std::vector<IoTValue> &param) {
             break;
         case sysop_wifiIsConnect:
             value.valD = isNetworkActive();
-            break;            
+            break;
+        case sysop_setInterval:
+            if (param.size() == 1) {
+                
+            }
+            break;
+        case sysop_addPortMap:
+            if (param.size() == 5) {
+                addPortMap(param[0].valS,  param[1].valS, param[2].valD, param[3].valS, param[4].valD);
+            }
+            break;           
     }
 
     return value;
@@ -508,6 +535,10 @@ class SysCallExprAST : public ExprAST {
             operation = sysop_mqttIsConnect;
         else if (Callee == F("wifiIsConnect"))
             operation = sysop_wifiIsConnect;            
+        else if (Callee == F("setInterval"))
+            operation = sysop_setInterval;
+        else if (Callee == F("addPortMap"))
+            operation = sysop_addPortMap;              
         else
             operation = sysop_notfound;
     }
@@ -713,6 +744,8 @@ int IoTScenario::gettok() {
                     IdentifierStr += '"';
                 } else if (LastChar == 'n') {
                     IdentifierStr += '\n';
+                } else if (LastChar == '\\') {
+                    IdentifierStr += '\\';
                 } 
             } else {
                 IdentifierStr += (char)LastChar;

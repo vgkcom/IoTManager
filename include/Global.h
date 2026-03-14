@@ -10,6 +10,7 @@
 #include <list>
 
 #ifdef LIBRETINY
+#include <Update.h>
 #include <vector>
 #include <typedef.h>
 #ifdef STANDARD_WEB_SERVER
@@ -65,7 +66,9 @@
 *****************************************глобальные объекты классов***************************************************
 **********************************************************************************************************************/
 extern IoTGpio IoTgpio;
+#ifdef mod_RtcDriver
 extern IoTItem* rtcItem;
+#endif
 //extern IoTItem* camItem;
 extern IoTItem* tlgrmItem;
 extern IoTBench* benchLoadItem;
